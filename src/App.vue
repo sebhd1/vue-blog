@@ -1,6 +1,6 @@
 <script setup>
-import Register from './components/Register.vue';
 import { ref } from 'vue';
+import Navigation from './components/partials/Navigation.vue';
 
 const registeredUsers = ref ([]);
 
@@ -15,9 +15,9 @@ function createUser(user){
 
 <template>
 
-    <Register
-        @create-user="createUser"
-    />
+    <Navigation/>
+
+    <RouterView />
 </template>
 
 <style>

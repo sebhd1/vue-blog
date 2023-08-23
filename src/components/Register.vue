@@ -1,5 +1,5 @@
 <script setup>
-    import { computed, ref, warn } from 'vue';
+    import { computed, ref } from 'vue';
 
     const user = ref({
         name: null,
@@ -57,8 +57,6 @@
             <p class="warning-text" v-if="showPasswordWarning">the passwords do not match!</p>
         </div>
 
-
-
         <button type="submit">
             Register
         </button>
@@ -82,9 +80,6 @@
         gap: 1rem;
 
 
-        & button {
-            width: 100%;
-        }
 
         & input {
             width: 100%;
