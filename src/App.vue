@@ -9,8 +9,6 @@ function createUser(user){
         id: crypto.randomUUID(),
         ... user
     })
-
-    console.log(user)
 }
 
 </script>

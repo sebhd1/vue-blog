@@ -1,22 +1,41 @@
 <script setup>
-    import { ref } from 'vue';
+    import { computed, ref, warn } from 'vue';
 
     const user = ref({
         name: null,
         email: null,
-        passwordOne: null,
-        passwordTwo: null,
+        password: '',
+        password_confirm: '',
     })
 
-    defineEmits([
+    const isPasswordValid = computed(() => {
+        return user.value.password === user.value.password_confirm;
+    })
+
+    const showPasswordWarning = computed(() => {
+        return user.value.password.length > 0 &&
+            user.value.password_confirm.length > 0 &&
+            !isPasswordValid.value;
+    })
+
+
+    const emit = defineEmits([
         'create-user'
     ])
 
+    function validateUser() {
+        if(isPasswordValid.value) {
+            emit('create-user', {
+                name: user.value.name,
+                email: user.value.email,
+                password: user.value.password
+            })
+        }
+    }
 </script>
 
 <template>
-
-    <form @submit.prevent="$emit('create-user', user)" >
+    <form @submit.prevent="validateUser">
         <div>
             <label for="name">name: </label>
             <input  v-model="user.name" type="text" id="name" placeholder="E.g Jhonny.." required>
@@ -28,14 +47,17 @@
         </div>
 
         <div>
-            <label for="passwordOne">password: </label>
-            <input  v-model="user.passwordOne" type="password" id="passwordOne" placeholder=" ... " required>
+            <label for="password">password: </label>
+            <input  v-model="user.password" type="password" id="password" placeholder=" ... " required>
         </div>
 
         <div>
-            <label for="passwordTwo">password: </label>
-            <input  v-model="user.passwordTwo" type="password" id="passwordTwo" placeholder=" ... " required>
+            <label for="password_confirm">password confirm: </label>
+            <input  v-model="user.password_confirm" type="password" id="password_confirm" placeholder=" ... " required>
+            <p class="warning-text" v-if="showPasswordWarning">the passwords do not match!</p>
         </div>
+
+
 
         <button type="submit">
             Register
@@ -45,6 +67,11 @@
 </template>
 
 <style scoped>
+
+    .warning-text {
+        color: darkred;
+        font-weight: bold;
+    }
 
     form {
         display: flex;
