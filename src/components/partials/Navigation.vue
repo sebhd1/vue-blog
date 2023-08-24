@@ -7,6 +7,13 @@
        <RouterLink :to="{name:'home'}">Go to Home</RouterLink>
        <RouterLink :to="{name:'login'}">Login</RouterLink>
        <RouterLink :to="{name:'register'}">Register</RouterLink>
+
+       <RouterLink :to="{name:'post'}">Post</RouterLink>
+
+       <RouterLink :to="{name:'posts'}">post list</RouterLink>
+
+       <RouterLink :to="{name:'post-create'}">create a post</RouterLink>
+       <RouterLink :to="{name:'post-edit'}">edit a post</RouterLink>
    </nav>
 </template>
 
