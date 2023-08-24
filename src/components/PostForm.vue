@@ -1,14 +1,18 @@
 <script setup>
-    //title (`string`),
-    // slug (`string`),
-    // content (`string`),
-    // author {id: `string(UUID)`,
-    // name: `string`}
-    // and comment (`string`).
+    import { inject, ref } from 'vue';
+    defineEmits([
+        'create-post'
+    ])
 
-    import { ref } from 'vue';
+
+    const { user } = inject('user');
+    console.log(user.value)
 
     const post = ref({
+        author: {
+            id: user.value.id,
+            name: user.value.name,
+        },
         title: null,
         slug: null,
         content: null,
@@ -18,10 +22,10 @@
 
 <template>
 
-    <form @submit.prevent="$emit('')">
+    <form @submit.prevent="$emit('create-post', post.value)">
         <div>
             <label for="title">title: </label>
-            <input v-model="post.title" type="text" id="title" placeholder="E.g A beautiful.." required>
+            <input v-model.trim="post.title" type="text" id="title" placeholder="E.g A beautiful.." required>
         </div>
 
         <div>
@@ -31,11 +35,10 @@
 
         <div>
             <label for="content">content: </label>
-            <textarea v-model="post.title" id="content" placeholder="E.g A beautiful swoosh.." ></textarea>
+            <textarea v-model.trim="post.content" id="content" placeholder="E.g A beautiful swoosh.." ></textarea>
         </div>
 
-
-        <button type="submit">x</button>
+        <button type="submit">Create</button>
     </form>
 
 
