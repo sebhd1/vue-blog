@@ -14,8 +14,7 @@
 </script>
 
 <template>
-
-    <form @submit.prevent="$emit('login', user.value)">
+    <form @submit.prevent="$emit('login', user)">
         <div>
             <label for="email">email: </label>
             <input  v-model="user.email" type="email" id="email" placeholder="E.g Jhonny@gmail.com" required>
@@ -30,7 +29,6 @@
             Login
         </button>
     </form>
-
 </template>
 
 <style>
