@@ -33,9 +33,9 @@ A post is defined as follows: title (`string`), slug (`string`), content (`strin
 
 A Home component showing the homepage of the app (home must be visible in or out the blog).
 
-A PostIndex component containing all the posts created. 
+A PostIndex component containing all the posts created.
 
-A Post component only to show the post. 
+A Post component only to show the post.
 
 A PostForm component must accept Post as prop in order to decide whether it has to create a new post or editing an existing (if owned), it would accept the title, slug, description.
 
