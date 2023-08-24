@@ -1,9 +1,10 @@
 <script setup>
     import { computed, ref } from 'vue';
 
+
     const user = ref({
-        name: null,
-        email: null,
+        name: '',
+        email: '',
         password: '',
         password_confirm: '',
     })
@@ -27,10 +28,12 @@
         if(isPasswordValid.value) {
             emit('create-user', {
                 name: user.value.name,
-                email: user.value.email,
+                email: user.value.email.toLowerCase(),
                 password: user.value.password
             })
+            return true;
         }
+        return false;
     }
 </script>
 
@@ -38,22 +41,22 @@
     <form @submit.prevent="validateUser">
         <div>
             <label for="name">name: </label>
-            <input  v-model="user.name" type="text" id="name" placeholder="E.g Jhonny.." required>
+            <input  v-model.trim="user.name" type="text" id="name" placeholder="E.g Jhonny.." required>
         </div>
 
         <div>
             <label for="email">email: </label>
-            <input  v-model="user.email" type="email" id="email" placeholder="E.g Jhonny@gmail.com" required>
+            <input  v-model.trim="user.email" type="email" id="email" placeholder="E.g Jhonny@gmail.com" required>
         </div>
 
         <div>
             <label for="password">password: </label>
-            <input  v-model="user.password" type="password" id="password" placeholder=" ... " required>
+            <input  v-model.trim="user.password" type="password" id="password" placeholder=" ... " required>
         </div>
 
         <div>
             <label for="password_confirm">password confirm: </label>
-            <input  v-model="user.password_confirm" type="password" id="password_confirm" placeholder=" ... " required>
+            <input  v-model.trim="user.password_confirm" type="password" id="password_confirm" placeholder=" ... " required>
             <p class="warning-text" v-if="showPasswordWarning">the passwords do not match!</p>
         </div>
 
