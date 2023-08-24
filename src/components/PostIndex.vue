@@ -1,17 +1,16 @@
 <script setup>
+import { inject } from 'vue';
+const { posts } = inject('posts');
 
-import Post from './Post.vue';
-import { ref } from 'vue';
-
-const posts = ref([]);
 </script>
 
 <template>
 
-    <div v-for="post in posts">
+    <div v-for="post in posts" :key="post.id">
 
-        <Post/>
-
+        <p>{{post.title}}</p>
+        <p>{{post.slug}}</p>
+        <p>{{post.content}}</p>
     </div>
 
 </template>
