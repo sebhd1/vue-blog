@@ -3,8 +3,8 @@
     import { ref } from 'vue';
 
     const user = ref({
-        email: null,
-        password: null
+        email: '',
+        password: ''
     })
 
     defineEmits([
@@ -17,12 +17,12 @@
     <form @submit.prevent="$emit('login', user)">
         <div>
             <label for="email">email: </label>
-            <input  v-model="user.email" type="email" id="email" placeholder="E.g Jhonny@gmail.com" required>
+            <input  v-model.trim="user.email" type="email" id="email" placeholder="E.g Jhonny@gmail.com" required>
         </div>
 
         <div>
             <label for="password">password: </label>
-            <input  v-model="user.password" type="password" id="password" placeholder=" ... " required>
+            <input  v-model.trim="user.password" type="password" id="password" placeholder=" ... " required>
         </div>
 
         <button type="submit">
