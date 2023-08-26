@@ -1,7 +1,7 @@
 <script setup>
     import { onMounted, inject } from 'vue';
 
-    const { logout } = inject('user');
+    const { logout }  = inject('user');
 
     onMounted(() => {
         console.log('logout mounted')
