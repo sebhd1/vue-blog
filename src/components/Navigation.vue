@@ -1,18 +1,16 @@
 <script setup>
     import { inject } from 'vue';
-
-    const {user, logout} = inject('user');
+    const { user, logout } = inject('user');
 
 </script>
 
 <template>
    <nav>
-
        <RouterLink :to="{name:'home'}">Go to Home</RouterLink>
 
        <template v-if="user">
-           <RouterLink :to="{name:'posts'}">post list</RouterLink>
-           <RouterLink :to="{name:'post-create'}">create a post</RouterLink>
+           <RouterLink :to="{name:'posts.index'}">post list</RouterLink>
+           <RouterLink :to="{name:'posts.create'}">create a post</RouterLink>
            <router-link :to="{name: 'logout'}">Logout</router-link>
            <!--<RouterLink :to="{name:'post'}">Post</RouterLink>
        <RouterLink :to="{name:'post-edit'}">edit a post</RouterLink>-->
